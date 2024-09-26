@@ -57,6 +57,6 @@ app.get('/api/character-image', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(process.env.DEPLOY_PROXY_URL || PORT, () => {
+  console.log('server on');
 });
