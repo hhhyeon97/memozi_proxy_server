@@ -6,7 +6,8 @@ const dotenv = require('dotenv');
 dotenv.config(); // .env 파일에서 환경 변수 불러오기
 
 const app = express();
-const PORT = 5000;
+// 서버가 배포되는 환경에서는 PORT 환경 변수를 통해 포트 값을 받아오고, 로컬에서는 5000번 포트를 사용
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 
@@ -57,6 +58,7 @@ app.get('/api/character-image', async (req, res) => {
   }
 });
 
-app.listen(process.env.DEPLOY_PROXY_URL || PORT, () => {
-  console.log('server on');
+// 서버 실행
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
